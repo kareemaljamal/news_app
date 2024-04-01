@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/news_tab.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../shared/network/remote/api_manager.dart';
 
@@ -12,7 +11,6 @@ class DataTab extends StatelessWidget {
 
   String search;
   String categoryId;
-  SharedPreferences? pref;
 
   @override
   Widget build(BuildContext context) {
