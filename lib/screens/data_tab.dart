@@ -17,7 +17,7 @@ class DataTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ApiManager.getResponse(categoryId),
+      future: ApiManager.getSources(categoryId),
       builder: (context, snapshot) {
         if (snapshot.connectionState ==
             ConnectionState.waiting) {

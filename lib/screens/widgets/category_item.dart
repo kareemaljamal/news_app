@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/models/category_model.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -9,14 +10,13 @@ class CategoryItem extends StatelessWidget {
   CategoryModel model;
   int index;
 
-  TextStyle style = TextStyle(
+  TextStyle style = GoogleFonts.exo(
       color: Colors.white,
-      fontSize: 20,
-      fontWeight: FontWeight.bold);
+      fontSize: 22,
+      fontWeight: FontWeight.w400);
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: model.color,
           borderRadius: BorderRadius.only(
@@ -33,8 +33,8 @@ class CategoryItem extends StatelessWidget {
         children: [
           Expanded(
               child: Image(image: AssetImage(model.img))),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          Container(
+            margin: EdgeInsets.all(5.0),
             child: Text(
               model.title,
               style: style,

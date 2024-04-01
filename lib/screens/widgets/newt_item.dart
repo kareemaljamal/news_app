@@ -1,17 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../models/news_data_model.dart';
 
 class NewsItem extends StatelessWidget {
   Articles article;
   NewsItem({required this.article, super.key});
-  TextStyle titleStyle =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+  TextStyle titleStyle = GoogleFonts.poppins(
+      fontSize: 16, fontWeight: FontWeight.w500);
 
-  TextStyle sourceStyle =
-      TextStyle(fontSize: 15, fontWeight: FontWeight.w400);
-
+  TextStyle sourceStyle = GoogleFonts.poppins(
+      fontSize: 10, fontWeight: FontWeight.w400);
   @override
   Widget build(BuildContext context) {
     return Container(

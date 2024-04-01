@@ -40,15 +40,10 @@ class CategoryModel {
           img: 'assets/sports.png',
           color: Color(0XffC91C22)),
       CategoryModel(
-          title: 'Technology',
-          id: 'technology',
-          img: 'assets/entertainment.png',
-          color: Color(0Xff4882CF)),
-      CategoryModel(
           title: 'Entertainment',
           id: 'entertainment',
           img: 'assets/entertainment.png',
-          color: Color(0XffCF7E48)),
+          color: Color(0Xff4882CF)),
     ];
   }
 }

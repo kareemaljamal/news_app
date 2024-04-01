@@ -7,7 +7,7 @@ import 'package:news_app/shared/components/constants.dart';
 import 'package:news_app/shared/network/remote/end_points.dart';
 
 class ApiManager {
-  static Future<SourceResponse> getResponse(
+  static Future<SourceResponse> getSources(
       String category) async {
     Uri url =
         Uri.https(Constants.BASE_URL, EndPoints.sources, {

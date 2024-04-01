@@ -72,6 +72,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         padding: const EdgeInsets.only(
                             top: 15.0),
                         child: TextField(
+                          onSubmitted: (value) {
+                            widget.searchIconClicked(
+                                searchController.text);
+                          },
                           controller: searchController,
                           enableSuggestions: true,
                           decoration: InputDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/models/category_model.dart';
 import 'package:news_app/screens/widgets/category_item.dart';
 
@@ -6,8 +7,8 @@ class CategoriesTab extends StatelessWidget {
   CategoriesTab(
       {super.key, required this.onCategoryClicked});
   Function onCategoryClicked;
-  TextStyle titleStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle titleStyle = GoogleFonts.poppins(
+      fontSize: 30, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +19,14 @@ class CategoriesTab extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(
-                horizontal: 18.0),
+                horizontal: 22.0),
             child: Text(
               'Pick your category of interest',
               style: titleStyle,
             ),
+          ),
+          SizedBox(
+            height: 20,
           ),
           Expanded(
             child: GridView.builder(
