@@ -9,16 +9,15 @@ import '../screens/widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
-
   HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String searchWord = '';
   int id = DrawerTab.CategoryId;
+  String search = '';
+  CategoryModel? model;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Scaffold(
           key: key,
+          // custom drawr
           drawer: DrawerTab(
             onClick: onMenuItemClicked,
           ),
           backgroundColor: Colors.transparent,
+          //custom appBars
           appBar: CustomAppBar(
             sKey: key,
             model: model,
             searchIconClicked: SearchIconClicked,
           ),
+          // Body will change according to the ID
           body: id == DrawerTab.CategoryId
               ? CategoriesTab(
                   onCategoryClicked: onCategoryClicked)
@@ -49,20 +51,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? SettingsTab()
                   : DataTab(
                       categoryId: model!.id,
-                      search: searchWord)),
+                      search: search)),
     );
   }
 
-  CategoryModel? model;
-
   onCategoryClicked(CategoryModel categoryModel) {
     model = categoryModel;
+    search = '';
     id = 0;
     setState(() {});
   }
 
   onMenuItemClicked(val) {
-    searchWord = '';
     if (val == DrawerTab.CategoryId) {
       model = null;
     }
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {});
   }
 
-  SearchIconClicked(String search) {
+  SearchIconClicked(String searchWord) {
     if (model == null) {
       showDialog(
         context: context,
@@ -101,8 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
       );
       return;
     } else {
+      search = searchWord;
       id = 0;
-      searchWord = search;
       setState(() {});
     }
   }

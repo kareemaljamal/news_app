@@ -91,6 +91,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     ),
                     InkWell(
                         onTap: () {
+                          print(searchController.text);
+
                           widget.searchIconClicked(
                               searchController.text);
                         },

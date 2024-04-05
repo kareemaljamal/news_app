@@ -1,79 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/bloc/cubit.dart';
 import 'package:news_app/screens/widgets/newt_item.dart';
 import 'package:news_app/screens/widgets/source_item.dart';
-import 'package:news_app/shared/network/remote/api_manager.dart';
 
-import '../models/source_response.dart';
-
-class NewsTab extends StatefulWidget {
-  NewsTab(
-      {super.key,
-      required this.sources,
-      required this.search});
-
-  String search;
-  List<Sources> sources;
-  @override
-  State<NewsTab> createState() => _NewsTabState();
-}
-
-class _NewsTabState extends State<NewsTab> {
-  int selectedIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class NewsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         DefaultTabController(
-            length: widget.sources.length,
+            length: HomeCubit.get(context).sources.length,
             child: TabBar(
               onTap: (value) async {
-                selectedIndex = value;
-                setState(() {});
+                HomeCubit.get(context)
+                    .ChangeSelectedIndex(value);
               },
               isScrollable: true,
-              tabs: widget.sources
+              tabs: HomeCubit.get(context)
+                  .sources
                   .map((e) => Tab(
                         child: SourceItem(
                           sources: e,
-                          selected: widget.sources
+                          selected: HomeCubit.get(context)
+                                  .sources
                                   .elementAt(
-                                      selectedIndex) ==
+                                      HomeCubit.get(context)
+                                          .selectedIndex) ==
                               e,
                         ),
                       ))
                   .toList(),
             )),
         Expanded(
-          child: FutureBuilder(
-            future: ApiManager.getNewsData(
-                widget.sources[selectedIndex].id ?? '',
-                widget.search),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState ==
-                  ConnectionState.waiting) {
-                return Center(
-                    child: CircularProgressIndicator());
-              }
-              if (!snapshot.hasData) {
-                return Center(
-                    child: Text('No Results To Show'));
-              }
-              var articles = snapshot.data!.articles ?? [];
-              return Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return NewsItem(
-                        article: articles[index]);
-                  },
-                  itemCount: articles.length,
-                ),
-              );
+          child: ListView.builder(
+            itemCount:
+                HomeCubit.get(context).articles.length,
+            itemBuilder: (context, index) {
+              return NewsItem(
+                  article: HomeCubit.get(context)
+                      .articles[index]);
             },
           ),
         )
